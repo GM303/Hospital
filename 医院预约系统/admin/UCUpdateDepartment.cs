@@ -11,39 +11,15 @@ namespace Hospital
 {
     public partial class UCUpdateDepartment : UCBase
     {
-        admin adm;
+        UCDeptDocInfoMaintain UC;
         public UCUpdateDepartment()
         {
             InitializeComponent();
         }
-        public UCUpdateDepartment(admin adm)
+        public UCUpdateDepartment(UCDeptDocInfoMaintain UC)
         {
             InitializeComponent();
-            this.adm = adm;
-            FreshTreeview();
-        }
-        public void FreshTreeview()
-        {
-            treeView1.Nodes.Clear();
-            DataTable dt = new DataTable();
-            dt = Fill("select * from departmentInfo ");
-            for (int i = 0; i < dt.Rows.Count; ++i)
-            {
-                treeView1.Nodes.Add(dt.Rows[i]["deptid"].ToString(), dt.Rows[i]["deptname"].ToString());
-            }
-            foreach (TreeNode tn in treeView1.Nodes)
-            {
-                dt = Fill("select * from departmentInfo where departmentInfo.deptid ='"+deptid+"'");
-                if (dt == null)
-                {
-                    MessageBox.Show("null");
-                    break;
-                }
-                for (int i = 0; i < dt.Rows.Count; ++i)
-                {
-                    tn.Nodes.Add(dt.Rows[i]["deptid"].ToString(), dt.Rows[i]["deptname"].ToString());
-                }
-            }
+            this.UC = UC;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,7 +39,8 @@ namespace Hospital
                 {
                     int res = NonQuery("insert into departmentInfo values('" + deptid + "','" + deptname + "')");
                     MessageBox.Show("保存成功！");
-                    FreshTreeview();
+                    UC.FreshTreeview();
+
                 }
                 else
                 {
