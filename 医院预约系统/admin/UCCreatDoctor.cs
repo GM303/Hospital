@@ -56,7 +56,7 @@ namespace Hospital
                         int res0 = NonQuery("insert into doctoraccount values('"+account+"','"+password+"','"+did+"')");
                         int res1 = NonQuery("insert into scheduleInfo values('" + did + "','" + deptid + "','00000000000000','0-0-0-0-0-0-0-0-0-0-0-0-0-0')");
                         MessageBox.Show("保存成功");
-                  //      FreshTreeview();
+                        UC.FreshTreeview();
                     }
                     else
                     {
@@ -94,10 +94,6 @@ namespace Hospital
                 }
 
             }
-            if(flag==2)
-            {
-
-            }
         }
         private void 添加医生ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -111,12 +107,6 @@ namespace Hospital
             comboBox1.Items.Add("科室主任");
             comboBox1.Text = "医生";
             textBox6.Text = "";
-        }
-        private void 删除医生ToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            flag = 2;
-            int res0 = NonQuery("delete doctorinfo where did='" + did + "'");
-      //      FreshTreeview();
         }
         private void 修改医生ToolStripMenuItem_Click(object sender, EventArgs e)
         {

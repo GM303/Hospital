@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -36,10 +35,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.添加医生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.修改医生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除医生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -47,7 +42,6 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dt)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -114,36 +108,6 @@
             this.label5.Size = new System.Drawing.Size(120, 27);
             this.label5.TabIndex = 10;
             this.label5.Text = "医生职务";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.添加医生ToolStripMenuItem,
-            this.修改医生ToolStripMenuItem,
-            this.删除医生ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
-            // 
-            // 添加医生ToolStripMenuItem
-            // 
-            this.添加医生ToolStripMenuItem.Name = "添加医生ToolStripMenuItem";
-            this.添加医生ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.添加医生ToolStripMenuItem.Text = "添加医生";
-            this.添加医生ToolStripMenuItem.Click += new System.EventHandler(this.添加医生ToolStripMenuItem_Click);
-            // 
-            // 修改医生ToolStripMenuItem
-            // 
-            this.修改医生ToolStripMenuItem.Name = "修改医生ToolStripMenuItem";
-            this.修改医生ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.修改医生ToolStripMenuItem.Text = "修改医生";
-            this.修改医生ToolStripMenuItem.Click += new System.EventHandler(this.修改医生ToolStripMenuItem_Click);
-            // 
-            // 删除医生ToolStripMenuItem
-            // 
-            this.删除医生ToolStripMenuItem.Name = "删除医生ToolStripMenuItem";
-            this.删除医生ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除医生ToolStripMenuItem.Text = "删除医生";
-            this.删除医生ToolStripMenuItem.Click += new System.EventHandler(this.删除医生ToolStripMenuItem_Click_1);
             // 
             // button1
             // 
@@ -221,7 +185,6 @@
             this.Name = "UCCreatDoctor";
             this.Size = new System.Drawing.Size(697, 638);
             ((System.ComponentModel.ISupportInitialize)(this.dt)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,15 +198,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 添加医生ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 修改医生ToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.ToolStripMenuItem 删除医生ToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }

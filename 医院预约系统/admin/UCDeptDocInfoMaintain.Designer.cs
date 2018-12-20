@@ -37,9 +37,12 @@
             this.添加科室ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.添加医生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除科室ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.删除医生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dt)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
+            this.contextMenuStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView1
@@ -103,6 +106,20 @@
             this.删除科室ToolStripMenuItem.Text = "删除科室";
             this.删除科室ToolStripMenuItem.Click += new System.EventHandler(this.删除科室ToolStripMenuItem_Click);
             // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.删除医生ToolStripMenuItem});
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(181, 48);
+            // 
+            // 删除医生ToolStripMenuItem
+            // 
+            this.删除医生ToolStripMenuItem.Name = "删除医生ToolStripMenuItem";
+            this.删除医生ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除医生ToolStripMenuItem.Text = "删除医生";
+            this.删除医生ToolStripMenuItem.Click += new System.EventHandler(this.删除医生ToolStripMenuItem_Click);
+            // 
             // UCDeptDocInfoMaintain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -114,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dt)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
+            this.contextMenuStrip3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -128,5 +146,7 @@
         private System.Windows.Forms.ToolStripMenuItem 添加科室ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem 添加医生ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 删除科室ToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
+        private System.Windows.Forms.ToolStripMenuItem 删除医生ToolStripMenuItem;
     }
 }

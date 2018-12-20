@@ -72,16 +72,16 @@ namespace Hospital
                 if (e.Node.Level == 0)
                 {
                     deptid = e.Node.Name;
+                    this.contextMenuStrip2.Show(Control.MousePosition);
                 }
                 else
                 {
                     name = e.Node.Text;
                     id = e.Node.Name;
+                    this.contextMenuStrip3.Show(Control.MousePosition);
                 }
-                this.contextMenuStrip2.Show(Control.MousePosition);
             }
         }
-
         private void 添加科室ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UCUpdateDepartment UC = new UCUpdateDepartment(this);
@@ -90,7 +90,6 @@ namespace Hospital
             groupBox1.Controls.Add(UC);
             groupBox1.Text = "添加科室";
         }
-
         private void 添加科室ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             UCUpdateDepartment UC = new UCUpdateDepartment(this);
@@ -99,7 +98,6 @@ namespace Hospital
             groupBox1.Controls.Add(UC);
             groupBox1.Text = "添加科室";
         }
-
         private void 添加医生ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UCCreatDoctor UC = new UCCreatDoctor(this);
@@ -108,10 +106,13 @@ namespace Hospital
             groupBox1.Controls.Add(UC);
             groupBox1.Text = "添加医生";
         }
-
         private void 删除科室ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NonQuery("delete from departmentInfo where deptid='" + deptid + "'");
+        }
+        private void 删除医生ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NonQuery("delete from doctorInfo where did='" + id + "'");
         }
     }
 }
