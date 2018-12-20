@@ -11,7 +11,7 @@ namespace Hospital
 {
     public partial class UCCreatDoctor : UCBase
     {
-        string dname, did, dsex, deptid, is_Director, account;
+        string dname, did, dsex, is_Director;
         int flag;
         public UCCreatDoctor()
         {
