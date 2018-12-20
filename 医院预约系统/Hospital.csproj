@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{743031E4-F8B9-49F5-9FB9-3DF6124D8EA5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hospital</RootNamespace>
+    <AssemblyName>Hospital</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/Hospital/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admin\admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\admin.Designer.cs">
+      <DependentUpon>admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoUpdateNumberSource.cs" />
+    <Compile Include="login\MD5Encrypt32.cs" />
+    <Compile Include="patient\patient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="patient\patient.Designer.cs">
+      <DependentUpon>patient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="patient\appointmentInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="patient\appointmentInfo.Designer.cs">
+      <DependentUpon>appointmentInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doctor\doctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doctor\doctor.Designer.cs">
+      <DependentUpon>doctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="base\UCBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="base\UCBase.Designer.cs">
+      <DependentUpon>UCBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="base\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="base\FormBase.Designer.cs">
+      <DependentUpon>FormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login\register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login\register.Designer.cs">
+      <DependentUpon>register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="login\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="login\login.Designer.cs">
+      <DependentUpon>login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="patient\UCAdjustTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="patient\UCAdjustTime.Designer.cs">
+      <DependentUpon>UCAdjustTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="patient\UCappointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="patient\UCappointment.Designer.cs">
+      <DependentUpon>UCappointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="patient\UCCancelAppointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="patient\UCCancelAppointment.Designer.cs">
+      <DependentUpon>UCCancelAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="doctor\UCChangeShifts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="doctor\UCChangeShifts.Designer.cs">
+      <DependentUpon>UCChangeShifts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doctor\UCShowAppointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="doctor\UCShowAppointment.Designer.cs">
+      <DependentUpon>UCShowAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doctor\UCShowSchedule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="doctor\UCShowSchedule.Designer.cs">
+      <DependentUpon>UCShowSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doctor\UCVacation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="doctor\UCVacation.Designer.cs">
+      <DependentUpon>UCVacation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doctor\vacationinfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doctor\vacationinfo.Designer.cs">
+      <DependentUpon>vacationinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UCSchedule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="admin\UCSchedule.Designer.cs">
+      <DependentUpon>UCSchedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="patient\ReleaseFreezeApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="patient\ReleaseFreezeApplication.Designer.cs">
+      <DependentUpon>ReleaseFreezeApplication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doctor\UCVacationApproval.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="doctor\UCVacationApproval.Designer.cs">
+      <DependentUpon>UCVacationApproval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="patient\UCappointmentSP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="patient\UCappointmentSP.Designer.cs">
+      <DependentUpon>UCappointmentSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="doctor\VacationApprovalInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doctor\VacationApprovalInfo.Designer.cs">
+      <DependentUpon>VacationApprovalInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UCCreatDoctor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="admin\UCCreatDoctor.designer.cs">
+      <DependentUpon>UCCreatDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UCUpdateDepartment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="admin\UCUpdateDepartment.Designer.cs">
+      <DependentUpon>UCUpdateDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UCDeptDocInfoMaintain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="admin\UCDeptDocInfoMaintain.Designer.cs">
+      <DependentUpon>UCDeptDocInfoMaintain.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="admin\admin.resx">
+      <DependentUpon>admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\UCDeptDocInfoMaintain.resx">
+      <DependentUpon>UCDeptDocInfoMaintain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\UCSchedule.resx">
+      <DependentUpon>UCSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCVacationApproval.resx">
+      <DependentUpon>UCVacationApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\VacationApprovalInfo.resx">
+      <DependentUpon>VacationApprovalInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="patient\patient.resx">
+      <DependentUpon>patient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="patient\appointmentInfo.resx">
+      <DependentUpon>appointmentInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\doctor.resx">
+      <DependentUpon>doctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="base\UCBase.resx">
+      <DependentUpon>UCBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="login\login.resx">
+      <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="patient\ReleaseFreezeApplication.resx">
+      <DependentUpon>ReleaseFreezeApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="patient\UCAdjustTime.resx">
+      <DependentUpon>UCAdjustTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="patient\UCappointment.resx">
+      <DependentUpon>UCappointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="patient\UCappointmentSP.resx">
+      <DependentUpon>UCappointmentSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="patient\UCCancelAppointment.resx">
+      <DependentUpon>UCCancelAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="login\register.resx">
+      <DependentUpon>register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCChangeShifts.resx">
+      <DependentUpon>UCChangeShifts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCShowAppointment.resx">
+      <DependentUpon>UCShowAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCShowSchedule.resx">
+      <DependentUpon>UCShowSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCVacation.resx">
+      <DependentUpon>UCVacation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\vacationinfo.resx">
+      <DependentUpon>vacationinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\UCCreatDoctor.resx">
+      <DependentUpon>UCCreatDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\UCUpdateDepartment.resx">
+      <DependentUpon>UCUpdateDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Sql.Server.Express.10.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2008 Express Edition</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
