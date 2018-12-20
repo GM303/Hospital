@@ -7,88 +7,127 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-
 namespace Hospital
 {
     public partial class UCschedule : UCBase
     {
-        CheckBox[] CB = new CheckBox[14];
-        ComboBox[] CbB = new ComboBox[14];
-        Label[] Lb = new Label[14];
+        CheckBox[] CB = new CheckBox[30];
+        string sid;
+        //ComboBox[] CbB = new ComboBox[14];
+        //Label[] Lb = new Label[14];
         public UCschedule()
         {
             InitializeComponent();
             FreshTreeview();
             CreatCButton();
-            CreatCbButton();
+            //CreatCbButton();
         }
-        public void FreshTreeview()
+        private void FreshTreeview()
         {
             treeView1.Nodes.Clear();
-            dt = Fill("select * from departmentInfo");
-            for(int i=0;i<dt.Rows.Count;++i)
+            DataTable dt = new DataTable();
+            dt = Fill("select deptname from departmentInfo");
+            for (int i = 0; i < dt.Rows.Count; ++i)
             {
-                treeView1.Nodes.Add(dt.Rows[i]["deptid"].ToString(), dt.Rows[i]["deptname"].ToString());
+                treeView1.Nodes.Add(dt.Rows[i]["deptname"].ToString().Trim());
             }
             foreach (TreeNode tn in treeView1.Nodes)
             {
-                dt = Fill("select * from doctorinfo where deptid='"+tn.Name+"'");
+                dt = Fill("select * from doctorInfo,departmentInfo where doctorInfo.deptid=departmentInfo.deptid and departmentInfo.deptname='" + tn.Text + "'");
+                if (dt == null)
+                {
+                    MessageBox.Show("null");
+                    break;
+                }
                 for (int i = 0; i < dt.Rows.Count; ++i)
                 {
-                    tn.Nodes.Add(dt.Rows[i]["did"].ToString(), dt.Rows[i]["dname"].ToString());
+                    tn.Nodes.Add(dt.Rows[i]["did"].ToString(), dt.Rows[i]["dname"].ToString().Trim());
                 }
             }
         }
+
+        
         public void CreatCButton()
         {
             Point startP = new Point(treeView1.Location.X + treeView1.Width + 10, treeView1.Location.Y);
             Point P = startP;
-            string[] week = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" };
+            DateTime time = DateTime.Now;
+
+            //string[] week = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" };
             string[] AP = { "上午", "下午" };
-            int DayOfWeek = 0;
-            for (int i = 0; i < 14; ++i)
+            //int DayOfWeek = 0;
+            for (int i = 0; i < 30; ++i)
             {
                 CB[i] = new CheckBox();
-                CB[i].Font = new Font("宋体", 20);
+                CB[i].Font = new Font("宋体", 15);
                 CB[i].Visible = false;
                 CB[i].AutoSize = true;
-                if (i % 2 == 0)
+                time=time.AddDays(1);
+                //设置上下午
+                if(i%1==1)
                 {
-                    CB[i].Text = week[DayOfWeek] + AP[0];
-                    CB[i].Location = P;
-                    this.Controls.Add(CB[i]);
+                    //MessageBox.Show(time.ToString());
+                    CB[i].Text =time.Year.ToString() +"-"+ time.Month.ToString()+"-" + time.Day.ToString() + "-"+ AP[0];
                 }
                 else
                 {
-                    CB[i].Text = week[DayOfWeek] + AP[1];
-                    DayOfWeek++;
-                    P.X += 260;
+                    //MessageBox.Show(time.ToString());
+                    CB[i].Text = time.Year.ToString() + "-" + time.Month.ToString() + "-" + time.Day.ToString() + "-" + AP[1];
+                }
+
+                //设置位置
+
+                if ((i % 4 == 0)&&(i!=0))
+                {
+                    P.X = treeView1.Location.X + treeView1.Width ;
+                    P.Y += treeView1.Location.Y +70;
+                   
                     CB[i].Location = P;
                     this.Controls.Add(CB[i]);
-                    P.X -= 260;
-                    P.Y += 80;
+                }
+                if(i%4!=0||i==0)
+                {
+                    P.X = treeView1.Location.X + treeView1.Width + (i%4)*189;
+                    //MessageBox.Show(P.ToString());
+                    CB[i].Location = P;
+                    this.Controls.Add(CB[i]);
                 }
             }
         }
         public void FreshCButton()
         {
-            string status;
             dt = Fill(@"Select * from scheduleInfo where scheduleInfo.did= '"+id+"'");
-            status = dt.Rows[0]["status"].ToString();
-            for (int i = 0; i < 14; i++)
+            for(int i=0;i<30;i++)
             {
                 CB[i].Visible = true;
-                if (status[i]=='1')
+                CB[i].Checked = false;
+            }
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                for (int j = 0; j < 30; j++)
                 {
-                    CB[i].Checked = true;
-                }
-                else
-                {
-                    CB[i].Checked = false;
+                    string[] date = Regex.Split(CB[i].Text, "-");//checkbox.Text的日期
+                    if (date[3].Equals("上午"))
+                    {
+                        ampm = "0";
+                    }
+                    else
+                    {
+                        ampm = "1";
+                    }
+                    if (dt.Rows[i]["year"].ToString().Equals(date[0]) && dt.Rows[i]["month"].ToString().Equals(date[1]) && dt.Rows[i]["day"].ToString().Equals(date[2]))
+                    {
+                        CB[i].Checked = true;
+                        break;
+                    }
+                    else
+                    {
+                        CB[i].Checked = false;
+                    }
                 }
             }
         }
-        public void CreatCbButton()
+        /* public void CreatCbButton()
         {
             Point startP = new Point(treeView1.Location.X + treeView1.Width + 100, treeView1.Location.Y+40);
             Point P = startP;
@@ -116,8 +155,8 @@ namespace Hospital
                     P.Y += 80;
                 }
             }
-        }
-        public void CreatLable()
+        }*/
+        /*public void CreatLable()
         {
             Point startP = new Point(treeView1.Location.X + treeView1.Width + 10, treeView1.Location.Y + 40);
             Point P = startP;
@@ -142,8 +181,8 @@ namespace Hospital
                     P.Y += 80;
                 }
             }
-        }
-        public void FreshCbButton()
+        }*/
+        /*public void FreshCbButton()
         {
             dt = Fill(@"Select * from scheduleInfo where scheduleInfo.did= '" + id + "'");
             string tmp = dt.Rows[0]["maxnum"].ToString();
@@ -154,19 +193,48 @@ namespace Hospital
                 CbB[i].Text = maxnum[i];
 
             }
+        }*/
+        public string CreatSid(string did,string deptid,string year,string month,string day,string ampm)
+        {
+            return did + deptid + year + month + day + ampm+"0";//排班状态默认为0，即医生在岗允许发号
+        }
+        public string GetDeptid(string did)
+        {
+            dt = Fill("select * from doctorInfo where did='" + id+"'");
+            return dt.Rows[0]["deptid"].ToString();
         }
         public void UpadteStatus()//更新排班
         {
-            string status = "";
-            for (int i = 0; i < 14; i++)
+            string[] date = new string[4];
+            for (int i = 0; i < 30; i++)
             {
-                if (CB[i].Checked == true)
-                    status += '1';
+                //分割checkbox.Text（日期）
+                date = Regex.Split(CB[i].Text, "-");
+                if (date[3].Equals("上午"))
+                {
+                    ampm = "0";
+                }
                 else
-                    status += '0';
+                {
+                    ampm = "1";
+                }
+                if (CB[i].Checked == true)//添加排班信息
+                {
+                    sid = CreatSid(id, deptid, date[0], date[1], date[2],ampm);
+                    dt = Fill("select * from scheduleInfo where sid='"+sid+"'");
+                    if(dt.Rows.Count==0)
+                    {
+                        int res = NonQuery("insert into scheduleInfo values('"+sid+ "','" + id + "','" + deptid + "','" + date[0] + "','" + date[1] + "','" + date[2] + "','" + ampm + "','0')");
+                    }
+                }
+                else//删除排班信息
+                {
+                    int res = NonQuery("delete from scheduleInfo where did='"+id+"' and year='"+date[0]+"' and month='"+date[1]+"' and day='"+date[2]+"' and ampm='"+ampm+"'");
+                    //MessageBox.Show(res.ToString());
+                }
             }
-            int res = NonQuery("update scheduleInfo set status='"+status+ "' where scheduleInfo.did='"+id+"'");
-            string maxnum="";
+            //int res = NonQuery("update scheduleInfo set status='"+status+ "' where scheduleInfo.did='"+id+"'");
+            /*string maxnum="";
             for (int i = 0; i < 14; i++)
             {
                 if (CB[i].Checked == true)
@@ -179,7 +247,7 @@ namespace Hospital
                 }
             }
             int res1 = NonQuery("update scheduleInfo set maxnum='" + maxnum + "' where scheduleInfo.did='" + id + "'");
-          //  AutoUpdateNumberSource.run(doc.id);
+            AutoUpdateNumberSource.run(doc.id);
 
             for (int i = 0; i < 7; i++)
             {
@@ -188,11 +256,7 @@ namespace Hospital
                     DeleteNumberSource(i);
                 }
             }
-
-        }
-        public void DeleteNumberSource(int i)
-        {
-            
+            */
         }
        /* public void UpdateNumsource()//更新号源
         {
@@ -236,9 +300,11 @@ namespace Hospital
             id = e.Node.Name;
             if (e.Node.Level == 1)
             {
+                deptid = GetDeptid(id);
+                //MessageBox.Show(deptid);
                 FreshCButton();
-                FreshCbButton();
-                CreatLable();
+                //FreshCbButton();
+                //CreatLable();
             }
         }
 
@@ -249,8 +315,8 @@ namespace Hospital
            // UpdateNumsource();
             MessageBox.Show("提交成功");
             FreshCButton();
-            FreshCbButton();
-       //     AutoUpdateNumberSource.run(doc.id);
+           // FreshCbButton();
+           // AutoUpdateNumberSource.run(doc.id);
         }
     }
 }

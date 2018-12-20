@@ -183,7 +183,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "UCCreatDoctor";
-            this.Size = new System.Drawing.Size(697, 638);
+            this.Size = new System.Drawing.Size(727, 652);
             ((System.ComponentModel.ISupportInitialize)(this.dt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -15,7 +15,7 @@ namespace Hospital
         public login()
         {
             InitializeComponent();
-            AutoUpdateNumberSource.run();
+            //utoUpdateNumberSource.run();
          //   AutoInsertNumberSources();
         }
         private int AccountCheck(string account, string password, string tableName)//返回0表示正确，返回1表示账号不存在，返回2表示密码错误

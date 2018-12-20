@@ -35,7 +35,7 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(16, 12);
+            this.treeView1.Location = new System.Drawing.Point(3, 0);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(230, 674);
             this.treeView1.TabIndex = 0;
