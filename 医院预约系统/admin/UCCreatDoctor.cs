@@ -23,7 +23,6 @@ namespace Hospital
             InitializeComponent();
             this.UC = UC;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (flag == 0)
@@ -67,7 +66,6 @@ namespace Hospital
             }
             if(flag==1)
             {
-
                 DataTable dt0 = new DataTable();
                 if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || comboBox1.Text == "")
                 {
@@ -101,7 +99,6 @@ namespace Hospital
 
             }
         }
-
         private void 添加医生ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             flag = 0;

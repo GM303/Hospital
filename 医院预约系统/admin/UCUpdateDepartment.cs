@@ -28,7 +28,6 @@ namespace Hospital
             deptid = textBox1.Text;
             deptname = textBox2.Text;
             dt = Fill("select * from departmentInfo where departmentInfo.deptid ='" + deptid + "'");
-
             if (textBox1.Text == "" || textBox2.Text == "")
             {
                 MessageBox.Show("请完整填入信息！");
