@@ -13,10 +13,15 @@ namespace Hospital
     {
         string dname, did, dsex, is_Director;
         int flag;
+        UCDeptDocInfoMaintain UC;
         public UCCreatDoctor()
         {
             InitializeComponent();
-            FreshTreeview();
+        }
+        public UCCreatDoctor(UCDeptDocInfoMaintain UC)
+        {
+            InitializeComponent();
+            this.UC = UC;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +57,7 @@ namespace Hospital
                         int res0 = NonQuery("insert into doctoraccount values('"+account+"','"+password+"','"+did+"')");
                         int res1 = NonQuery("insert into scheduleInfo values('" + did + "','" + deptid + "','00000000000000','0-0-0-0-0-0-0-0-0-0-0-0-0-0')");
                         MessageBox.Show("保存成功");
-                        FreshTreeview();
+                  //      FreshTreeview();
                     }
                     else
                     {
@@ -87,7 +92,7 @@ namespace Hospital
                     int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "')");
                     string password = Encrypt.MD5Encrypt32("66");
                     MessageBox.Show("保存成功");
-                    FreshTreeview();
+                //    FreshTreeview();
                 }
 
             }
@@ -95,12 +100,6 @@ namespace Hospital
             {
 
             }
-        }
-
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
         }
 
         private void 添加医生ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -120,12 +119,8 @@ namespace Hospital
         {
             flag = 2;
             int res0 = NonQuery("delete doctorinfo where did='" + did + "'");
-            int res1 = NonQuery("delete doctorAccount where did='" + did + "'");
-            int res2 = NonQuery("delete scheduleInfo where did='" + did + "'");
-            int res3 = NonQuery("delete numSourceInfo where did='" + did + "'");
-            FreshTreeview();
+      //      FreshTreeview();
         }
-
         private void 修改医生ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             flag = 1;
@@ -144,43 +139,7 @@ namespace Hospital
                 comboBox1.Text = "科室主任";
             }
         }
-
-        public void FreshTreeview()
-        {
-            treeView1.Nodes.Clear();
-            DataTable dt = new DataTable();
-            dt = Fill("select * from departmentInfo");
-            for (int i = 0; i < dt.Rows.Count; ++i)
-            {
-                treeView1.Nodes.Add(dt.Rows[i]["deptid"].ToString(),dt.Rows[i]["deptname"].ToString());
-            }
-            foreach (TreeNode tn in treeView1.Nodes)
-            {
-                dt = Fill("select * from doctorInfo,departmentInfo where doctorInfo.deptid=departmentInfo.deptid and departmentInfo.deptname='" + tn.Text + "'");
-                if (dt == null)
-                {
-                    MessageBox.Show("null");
-                    break;
-                }
-                for (int i = 0; i < dt.Rows.Count; ++i)
-                {
-                    tn.Nodes.Add(dt.Rows[i]["did"].ToString(), dt.Rows[i]["dname"].ToString());
-                }
-            }
-        }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
+        /*
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             treeView1.SelectedNode = e.Node;
@@ -227,6 +186,6 @@ namespace Hospital
                     }
                 }
             }
-        }
+        }*/
     }
 }
