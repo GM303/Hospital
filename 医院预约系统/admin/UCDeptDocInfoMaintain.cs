@@ -41,9 +41,14 @@ namespace Hospital
             {
                 if (e.Node.Level == 0)
                 {
+                    name = e.Node.Text;
+                    id = e.Node.Name;
+                    UCUpdateDepartment UC = new UCUpdateDepartment(this);
+                    UC.Location = new System.Drawing.Point(0, 0);
+                    groupBox1.Controls.Clear();
+                    groupBox1.Controls.Add(UC);
+                    groupBox1.Text = "添加科室";
                     /*
-                    dname = e.Node.Text;
-                    did = e.Node.Name;
                     DataTable dt = new DataTable();
                     flag = 1;
                     dt = Fill("select * from doctorinfo where did='" + did + "'");
@@ -63,8 +68,11 @@ namespace Hospital
                 }
                 else
                 {
-
-
+                    UCCreatDoctor UC = new UCCreatDoctor(this);
+                    UC.Location = new System.Drawing.Point(0, 0);
+                    groupBox1.Controls.Clear();
+                    groupBox1.Controls.Add(UC);
+                    groupBox1.Text = "添加医生";
                 }
             }
             else
@@ -72,47 +80,52 @@ namespace Hospital
                 if (e.Node.Level == 0)
                 {
                     deptid = e.Node.Name;
-                    this.contextMenuStrip2.Show(Control.MousePosition);
+                    contextMenuStrip1.Items[1].Enabled = true;
+                    contextMenuStrip1.Items[2].Enabled = true;
                 }
                 else
                 {
                     name = e.Node.Text;
                     id = e.Node.Name;
-                    this.contextMenuStrip3.Show(Control.MousePosition);
+                    contextMenuStrip1.Items[1].Enabled = true;
+                    contextMenuStrip1.Items[2].Enabled = true;
+                    contextMenuStrip1.Items[3].Enabled = true;
                 }
             }
         }
         private void 添加科室ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UCUpdateDepartment UC = new UCUpdateDepartment(this);
-            UC.Location = groupBox1.Location;
+            UC.Location = new System.Drawing.Point(0, 0);
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(UC);
             groupBox1.Text = "添加科室";
         }
-        private void 添加科室ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            UCUpdateDepartment UC = new UCUpdateDepartment(this);
-            UC.Location = groupBox1.Location;
-            groupBox1.Controls.Clear();
-            groupBox1.Controls.Add(UC);
-            groupBox1.Text = "添加科室";
-        }
-        private void 添加医生ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 添加医生ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             UCCreatDoctor UC = new UCCreatDoctor(this);
-            UC.Location = groupBox1.Location;
+            UC.Location = new System.Drawing.Point(0, 0);
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(UC);
             groupBox1.Text = "添加医生";
         }
-        private void 删除科室ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NonQuery("delete from departmentInfo where deptid='" + deptid + "'");
-        }
-        private void 删除医生ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void 删除医生ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             NonQuery("delete from doctorInfo where did='" + id + "'");
+            FreshTreeview();
+
+        }
+        private void 删除科室ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            NonQuery("delete from departmentInfo where deptid='" + deptid + "'");
+            FreshTreeview();
+
+        }
+        private void contextMenuStrip1_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            contextMenuStrip1.Items[1].Enabled = false;
+            contextMenuStrip1.Items[2].Enabled = false;
+            contextMenuStrip1.Items[3].Enabled = false;
         }
     }
 }

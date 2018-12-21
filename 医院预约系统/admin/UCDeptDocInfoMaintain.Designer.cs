@@ -33,20 +33,16 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.添加科室ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.添加科室ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.添加医生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.删除科室ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.删除医生ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除科室ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.添加医生ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除医生ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dt)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            this.contextMenuStrip2.SuspendLayout();
-            this.contextMenuStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeView1
             // 
+            this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Location = new System.Drawing.Point(4, 4);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(230, 652);
@@ -56,14 +52,18 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.添加科室ToolStripMenuItem});
+            this.添加科室ToolStripMenuItem,
+            this.删除科室ToolStripMenuItem1,
+            this.添加医生ToolStripMenuItem1,
+            this.删除医生ToolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.contextMenuStrip1_Closed);
             // 
             // 添加科室ToolStripMenuItem
             // 
             this.添加科室ToolStripMenuItem.Name = "添加科室ToolStripMenuItem";
-            this.添加科室ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.添加科室ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.添加科室ToolStripMenuItem.Text = "添加科室";
             this.添加科室ToolStripMenuItem.Click += new System.EventHandler(this.添加科室ToolStripMenuItem_Click);
             // 
@@ -76,49 +76,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // contextMenuStrip2
+            // 删除科室ToolStripMenuItem1
             // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.添加科室ToolStripMenuItem1,
-            this.添加医生ToolStripMenuItem,
-            this.删除科室ToolStripMenuItem});
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(125, 70);
+            this.删除科室ToolStripMenuItem1.Name = "删除科室ToolStripMenuItem1";
+            this.删除科室ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.删除科室ToolStripMenuItem1.Text = "删除科室";
+            this.删除科室ToolStripMenuItem1.Click += new System.EventHandler(this.删除科室ToolStripMenuItem1_Click);
             // 
-            // 添加科室ToolStripMenuItem1
+            // 添加医生ToolStripMenuItem1
             // 
-            this.添加科室ToolStripMenuItem1.Name = "添加科室ToolStripMenuItem1";
-            this.添加科室ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.添加科室ToolStripMenuItem1.Text = "添加科室";
-            this.添加科室ToolStripMenuItem1.Click += new System.EventHandler(this.添加科室ToolStripMenuItem1_Click);
+            this.添加医生ToolStripMenuItem1.Name = "添加医生ToolStripMenuItem1";
+            this.添加医生ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.添加医生ToolStripMenuItem1.Text = "添加医生";
+            this.添加医生ToolStripMenuItem1.Click += new System.EventHandler(this.添加医生ToolStripMenuItem1_Click);
             // 
-            // 添加医生ToolStripMenuItem
+            // 删除医生ToolStripMenuItem1
             // 
-            this.添加医生ToolStripMenuItem.Name = "添加医生ToolStripMenuItem";
-            this.添加医生ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.添加医生ToolStripMenuItem.Text = "添加医生";
-            this.添加医生ToolStripMenuItem.Click += new System.EventHandler(this.添加医生ToolStripMenuItem_Click);
-            // 
-            // 删除科室ToolStripMenuItem
-            // 
-            this.删除科室ToolStripMenuItem.Name = "删除科室ToolStripMenuItem";
-            this.删除科室ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除科室ToolStripMenuItem.Text = "删除科室";
-            this.删除科室ToolStripMenuItem.Click += new System.EventHandler(this.删除科室ToolStripMenuItem_Click);
-            // 
-            // contextMenuStrip3
-            // 
-            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.删除医生ToolStripMenuItem});
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(125, 26);
-            // 
-            // 删除医生ToolStripMenuItem
-            // 
-            this.删除医生ToolStripMenuItem.Name = "删除医生ToolStripMenuItem";
-            this.删除医生ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除医生ToolStripMenuItem.Text = "删除医生";
-            this.删除医生ToolStripMenuItem.Click += new System.EventHandler(this.删除医生ToolStripMenuItem_Click);
+            this.删除医生ToolStripMenuItem1.Name = "删除医生ToolStripMenuItem1";
+            this.删除医生ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.删除医生ToolStripMenuItem1.Text = "删除医生";
+            this.删除医生ToolStripMenuItem1.Click += new System.EventHandler(this.删除医生ToolStripMenuItem1_Click);
             // 
             // UCDeptDocInfoMaintain
             // 
@@ -130,8 +107,6 @@
             this.Size = new System.Drawing.Size(970, 659);
             ((System.ComponentModel.ISupportInitialize)(this.dt)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.contextMenuStrip2.ResumeLayout(false);
-            this.contextMenuStrip3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -142,11 +117,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 添加科室ToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem 添加科室ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem 添加医生ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 删除科室ToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
-        private System.Windows.Forms.ToolStripMenuItem 删除医生ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除科室ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 添加医生ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem 删除医生ToolStripMenuItem1;
     }
 }

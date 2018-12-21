@@ -20,32 +20,48 @@ namespace Hospital
         {
             InitializeComponent();
             this.UC = UC;
+            button1.Enabled = false;
         }
+        private void InfoCheck(string deptid,string deptname)
+        {
+            if(deptid=="")
+            {
+                label3.Text = "科室编号不能为空";
+                return;
+            }
+            dt = Fill("select * from departmentInfo where departmentInfo.deptid ='" + deptid + "'");
+            if(dt.Rows.Count!=0)
+            {
+                label3.Text = "科室编号已存在";
+                return;
+            }
+            if (deptname == "")
+            {
+                label3.Text = "科室名称不能为空";
+                return;
+            }
+            label3.Text = "";
+            button1.Enabled = true;
 
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             string deptid, deptname;
             deptid = textBox1.Text;
             deptname = textBox2.Text;
-            dt = Fill("select * from departmentInfo where departmentInfo.deptid ='" + deptid + "'");
-            if (textBox1.Text == "" || textBox2.Text == "")
-            {
-                MessageBox.Show("请完整填入信息！");
-            }
-            else
-            { 
-                if (dt.Rows.Count == 0)
-                {
-                    int res = NonQuery("insert into departmentInfo values('" + deptid + "','" + deptname + "')");
-                    MessageBox.Show("保存成功！");
-                    UC.FreshTreeview();
+            int res = NonQuery("insert into departmentInfo values('" + deptid + "','" + deptname + "')");
+            MessageBox.Show("保存成功！");
+            UC.FreshTreeview();
+        }
 
-                }
-                else
-                {
-                    MessageBox.Show("科室编号重复");
-                }
-            }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            InfoCheck(textBox1.Text, textBox2.Text);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            InfoCheck(textBox1.Text, textBox2.Text);
         }
     }
 }
