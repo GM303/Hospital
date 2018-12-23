@@ -20,24 +20,36 @@ namespace Hospital
         {
             InitializeComponent();
             this.UC = UC;
-            button1.Enabled = false;
+            if(this.UC.modifyFlag == 0)
+            {
+                button1.Enabled = false;
+            }
+            else
+            {
+                textBox1.Text = UC.id;
+                textBox2.Text = UC.name;
+                label3.Text = "";
+            }
         }
         private void InfoCheck(string deptid,string deptname)
         {
             if(deptid=="")
             {
                 label3.Text = "科室编号不能为空";
+                button1.Enabled = false;
                 return;
             }
             dt = Fill("select * from departmentInfo where departmentInfo.deptid ='" + deptid + "'");
             if(dt.Rows.Count!=0)
             {
                 label3.Text = "科室编号已存在";
+                button1.Enabled = false;
                 return;
             }
             if (deptname == "")
             {
                 label3.Text = "科室名称不能为空";
+                button1.Enabled = false;
                 return;
             }
             label3.Text = "";

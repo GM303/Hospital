@@ -22,6 +22,35 @@ namespace Hospital
         {
             InitializeComponent();
             this.UC = UC;
+            flag = UC.modifyFlag;
+            comboBox1.Items.Add("医生");
+            comboBox1.Items.Add("科室主任");
+            if (flag==0)
+            {
+                textBox4.Text = UC.deptid;
+                comboBox1.Text = "医生";
+            }
+            else
+            {
+                dname = UC.name;
+                did = UC.id;
+                DataTable dt = new DataTable();
+                dt = Fill("select * from doctorinfo where did='" + did + "'");
+                textBox1.Text = dt.Rows[0]["dname"].ToString();
+                textBox2.Text = dt.Rows[0]["dsex"].ToString();
+                textBox3.Text = dt.Rows[0]["did"].ToString();
+                textBox4.Text = dt.Rows[0]["deptid"].ToString();
+                textBox6.Text = dt.Rows[0]["account"].ToString();
+                if (dt.Rows[0]["isDirector"].ToString() == "0")
+                {
+                    comboBox1.Text = "医生";
+                }
+                else
+                {
+                    comboBox1.Text = "科室主任";
+                }
+
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -90,89 +119,9 @@ namespace Hospital
                     int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "')");
                     string password = Encrypt.MD5Encrypt32("66");
                     MessageBox.Show("保存成功");
-                //    FreshTreeview();
                 }
 
             }
         }
-        private void 添加医生ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            flag = 0;
-            textBox4.Text = deptid;
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add("医生");
-            comboBox1.Items.Add("科室主任");
-            comboBox1.Text = "医生";
-            textBox6.Text = "";
-        }
-        private void 修改医生ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            flag = 1;
-            dt = Fill("select * from doctorinfo where did='" + did + "'");
-            textBox1.Text = dt.Rows[0]["dname"].ToString();
-            textBox2.Text = dt.Rows[0]["dsex"].ToString();
-            textBox3.Text = dt.Rows[0]["did"].ToString();
-            textBox4.Text = dt.Rows[0]["deptid"].ToString();
-            textBox6.Text = dt.Rows[0]["account"].ToString();
-            if (dt.Rows[0]["isDirector"].ToString() == "0")
-            {
-                comboBox1.Text = "医生";
-            }
-            else
-            {
-                comboBox1.Text = "科室主任";
-            }
-        }
-        /*
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            treeView1.SelectedNode = e.Node;
-            if (e.Button==MouseButtons.Right)
-            {
-                if(e.Node.Level==0)
-                {
-                    contextMenuStrip1.Items[1].Enabled = false;
-                    contextMenuStrip1.Items[2].Enabled = false;
-                    contextMenuStrip1.Items[0].Enabled = true;
-                    deptid = e.Node.Name;
-                }
-                else
-                {
-                    contextMenuStrip1.Items[1].Enabled = true;
-                    contextMenuStrip1.Items[2].Enabled = true;
-                    contextMenuStrip1.Items[0].Enabled = false;
-                    dname = e.Node.Text;
-                    did = e.Node.Name;
-                }
-                this.contextMenuStrip1.Show(Control.MousePosition);
-            }
-            else
-            {
-                if(e.Node.Level==1)
-                {
-                    dname = e.Node.Text;
-                    did = e.Node.Name;
-                    DataTable dt = new DataTable();
-                    flag = 1;
-                    dt = Fill("select * from doctorinfo where did='" + did + "'");
-                    textBox1.Text = dt.Rows[0]["dname"].ToString();
-                    textBox2.Text = dt.Rows[0]["dsex"].ToString();
-                    textBox3.Text = dt.Rows[0]["did"].ToString();
-                    textBox4.Text = dt.Rows[0]["deptid"].ToString();
-                    textBox6.Text = dt.Rows[0]["account"].ToString();
-                    if (dt.Rows[0]["isDirector"].ToString() == "0")
-                    {
-                        comboBox1.Text = "医生";
-                    }
-                    else
-                    {
-                        comboBox1.Text = "科室主任";
-                    }
-                }
-            }
-        }*/
     }
 }

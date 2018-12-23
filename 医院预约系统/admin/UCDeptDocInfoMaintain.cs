@@ -11,10 +11,14 @@ namespace Hospital
 {
     public partial class UCDeptDocInfoMaintain : UCBase
     {
+        public int modifyFlag;//为0时是添加，为1时是修改;
         public UCDeptDocInfoMaintain()
         {
             InitializeComponent();
             FreshTreeview();
+            contextMenuStrip1.Items[1].Enabled = false;
+            contextMenuStrip1.Items[2].Enabled = false;
+            contextMenuStrip1.Items[3].Enabled = false;
         }
         public void FreshTreeview()
         {
@@ -39,40 +43,25 @@ namespace Hospital
             treeView1.SelectedNode = e.Node;
             if (e.Button == MouseButtons.Left)
             {
+                modifyFlag = 1;
                 if (e.Node.Level == 0)
                 {
                     name = e.Node.Text;
-                    id = e.Node.Name;
+                    id = e.Node.Name;;
                     UCUpdateDepartment UC = new UCUpdateDepartment(this);
                     UC.Location = new System.Drawing.Point(0, 0);
-                    groupBox1.Controls.Clear();
-                    groupBox1.Controls.Add(UC);
-                    groupBox1.Text = "添加科室";
-                    /*
-                    DataTable dt = new DataTable();
-                    flag = 1;
-                    dt = Fill("select * from doctorinfo where did='" + did + "'");
-                    textBox1.Text = dt.Rows[0]["dname"].ToString();
-                    textBox2.Text = dt.Rows[0]["dsex"].ToString();
-                    textBox3.Text = dt.Rows[0]["did"].ToString();
-                    textBox4.Text = dt.Rows[0]["deptid"].ToString();
-                    textBox6.Text = dt.Rows[0]["account"].ToString();
-                    if (dt.Rows[0]["isDirector"].ToString() == "0")
-                    {
-                        comboBox1.Text = "医生";
-                    }
-                    else
-                    {
-                        comboBox1.Text = "科室主任";
-                    }*/
+                    panel1.Controls.Clear();
+                    panel1.Controls.Add(UC);
                 }
                 else
                 {
+                    name = e.Node.Text;
+                    id = e.Node.Name; ;
                     UCCreatDoctor UC = new UCCreatDoctor(this);
                     UC.Location = new System.Drawing.Point(0, 0);
-                    groupBox1.Controls.Clear();
-                    groupBox1.Controls.Add(UC);
-                    groupBox1.Text = "添加医生";
+                    panel1.Controls.Clear();
+                    panel1.Controls.Add(UC);
+                    panel1.Text = "添加医生";
                 }
             }
             else
@@ -95,19 +84,21 @@ namespace Hospital
         }
         private void 添加科室ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            modifyFlag = 0;
             UCUpdateDepartment UC = new UCUpdateDepartment(this);
             UC.Location = new System.Drawing.Point(0, 0);
-            groupBox1.Controls.Clear();
-            groupBox1.Controls.Add(UC);
-            groupBox1.Text = "添加科室";
+            panel1.Controls.Clear();
+            panel1.Controls.Add(UC);
+            panel1.Text = "添加科室";
         }
         private void 添加医生ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            modifyFlag = 0;
             UCCreatDoctor UC = new UCCreatDoctor(this);
             UC.Location = new System.Drawing.Point(0, 0);
-            groupBox1.Controls.Clear();
-            groupBox1.Controls.Add(UC);
-            groupBox1.Text = "添加医生";
+            panel1.Controls.Clear();
+            panel1.Controls.Add(UC);
+            panel1.Text = "添加医生";
         }
         private void 删除医生ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
