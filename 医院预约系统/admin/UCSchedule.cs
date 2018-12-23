@@ -11,8 +11,14 @@ namespace Hospital
 {
     public partial class UCschedule : UCBase
     {
-        CheckBox[] CB = new CheckBox[30];
+        CheckBox[] CB = new CheckBox[60];
+        Label[] LB = new Label[7];
         string sid;
+        string[] week = { "monday", "tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+        string[] weekChinese = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
+        static DateTime time = DateTime.Now.AddDays(1);
+       // static DateTime time = new DateTime(2018,12,20);
+        string DayOfWeek = time.DayOfWeek.ToString();
         //ComboBox[] CbB = new ComboBox[14];
         //Label[] Lb = new Label[14];
         public UCschedule()
@@ -45,85 +51,105 @@ namespace Hospital
                 }
             }
         }
-
-        
+        public int GetCButtonStratLocation(string Week)
+        {
+            //MessageBox.Show(Week);
+            int j = 0;
+            for(int i=0;i<7;i++)
+            {
+                if(Week.Equals(week[i]))
+                {
+                    j=i;
+                }
+            }
+            return j;
+        }
+        public void CreatLabel()
+        {
+            
+           for(int i=0;i<7;i++)
+           {
+                LB[i] = new Label();
+                LB[i].Text = weekChinese[i];
+                LB[i].Font = new Font("宋体", 15);
+                LB[i].Location = new Point(treeView1.Location.X + treeView1.Width + i*120, treeView1.Location.Y);
+                LB[i].Visible = true;
+                this.Controls.Add(LB[i]);
+           }
+            
+        }
         public void CreatCButton()
         {
-            Point startP = new Point(treeView1.Location.X + treeView1.Width + 10, treeView1.Location.Y);
+            int startLocation = GetCButtonStratLocation(DayOfWeek);
+            //MessageBox.Show(startLocation.ToString());
+            Point startP = new Point(treeView1.Location.X + treeView1.Width + (startLocation%7)*120, treeView1.Location.Y+50);
             Point P = startP;
-            DateTime time = DateTime.Now;
-
-            //string[] week = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期天" };
             string[] AP = { "上午", "下午" };
-            //int DayOfWeek = 0;
-            for (int i = 0; i < 30; ++i)
+            for (int i = 0; i < 60; ++i)
             {
-                CB[i] = new CheckBox();
-                CB[i].Font = new Font("宋体", 15);
-                CB[i].Visible = false;
-                CB[i].AutoSize = true;
-                time=time.AddDays(1);
-                //设置上下午
-                if(i%1==1)
+                //MessageBox.Show(i.ToString());
+                
+                for (int j = 0; j < 2; j++)
                 {
-                    //MessageBox.Show(time.ToString());
-                    CB[i].Text =time.Year.ToString() +"-"+ time.Month.ToString()+"-" + time.Day.ToString() + "-"+ AP[0];
+                    CB[i+j] = new CheckBox();
+                    CB[i + j].Font = new Font("宋体", 9);
+                    CB[i + j].Visible = false;
+                    CB[i + j].AutoSize = true;
+                    CB[i + j].Text = time.Year.ToString() + "-" + time.Month.ToString() + "-" + time.Day.ToString() + "-" + AP[j];
+                    P.Y = P.Y +j*20;
+                    CB[i + j].Location = P;
+                    if(j==1)
+                    {
+                        CB[i+j].ForeColor = Color.Red;
+                    }
+                    this.Controls.Add(CB[i+j]);
+                    
                 }
-                else
+                i++;
+                P.X += 120;
+                P.Y -= 20;
+                if (P.X >= treeView1.Location.X + treeView1.Width + 820)
                 {
-                    //MessageBox.Show(time.ToString());
-                    CB[i].Text = time.Year.ToString() + "-" + time.Month.ToString() + "-" + time.Day.ToString() + "-" + AP[1];
+                    P.X = treeView1.Location.X + treeView1.Width;
+                    P.Y += 100;
                 }
-
-                //设置位置
-
-                if ((i % 4 == 0)&&(i!=0))
-                {
-                    P.X = treeView1.Location.X + treeView1.Width ;
-                    P.Y += treeView1.Location.Y +70;
-                   
-                    CB[i].Location = P;
-                    this.Controls.Add(CB[i]);
-                }
-                if(i%4!=0||i==0)
-                {
-                    P.X = treeView1.Location.X + treeView1.Width + (i%4)*189;
-                    //MessageBox.Show(P.ToString());
-                    CB[i].Location = P;
-                    this.Controls.Add(CB[i]);
-                }
+                time = time.AddDays(1);
             }
         }
         public void FreshCButton()
         {
             dt = Fill(@"Select * from scheduleInfo where scheduleInfo.did= '"+id+"'");
-            for(int i=0;i<30;i++)
+            //MessageBox.Show(dt.Rows.Count.ToString());
+            for(int i=0;i<60;i++)
             {
                 CB[i].Visible = true;
                 CB[i].Checked = false;
             }
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                for (int j = 0; j < 30; j++)
+                //  MessageBox.Show(dt.Rows[i]["day"].ToString());
+               // MessageBox.Show(dt.Rows[i]["year"].ToString() + "-" + dt.Rows[i]["month"].ToString() + "-" + dt.Rows[i]["day"].ToString() + "-" + dt.Rows[i]["ampm"].ToString());
+
+                for (int j = 0; j < 60; j++)
                 {
-                    string[] date = Regex.Split(CB[i].Text, "-");//checkbox.Text的日期
+                    string[] date = Regex.Split(CB[j].Text, "-");//checkbox.Text的日期
+                   
                     if (date[3].Equals("上午"))
                     {
+                        //MessageBox.Show(date[3].ToString()+"!");
                         ampm = "0";
                     }
                     else
                     {
                         ampm = "1";
                     }
-                    if (dt.Rows[i]["year"].ToString().Equals(date[0]) && dt.Rows[i]["month"].ToString().Equals(date[1]) && dt.Rows[i]["day"].ToString().Equals(date[2]))
+                    //MessageBox.Show(date[0]+ "-"+date[1]+ "-"+date[2]+"-"+ampm+"!");
+                    if (dt.Rows[i]["year"].ToString().Equals(date[0]) && dt.Rows[i]["month"].ToString().Equals(date[1]) && dt.Rows[i]["day"].ToString().Equals(date[2]) && dt.Rows[i]["ampm"].ToString().Equals(ampm))
                     {
-                        CB[i].Checked = true;
+                        CB[j].Checked = true;
                         break;
                     }
-                    else
-                    {
-                        CB[i].Checked = false;
-                    }
+
                 }
             }
         }
@@ -206,7 +232,7 @@ namespace Hospital
         public void UpadteStatus()//更新排班
         {
             string[] date = new string[4];
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 60; i++)
             {
                 //分割checkbox.Text（日期）
                 date = Regex.Split(CB[i].Text, "-");
@@ -303,6 +329,7 @@ namespace Hospital
                 deptid = GetDeptid(id);
                 //MessageBox.Show(deptid);
                 FreshCButton();
+                CreatLabel();
                 //FreshCbButton();
                 //CreatLable();
             }

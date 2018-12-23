@@ -40,9 +40,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(12, 28);
+            this.groupBox1.Location = new System.Drawing.Point(0, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(984, 689);
+            this.groupBox1.Size = new System.Drawing.Size(996, 689);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -67,7 +67,7 @@
             // 
             // 修改科室信息ToolStripMenuItem
             // 
-            this.修改科室信息ToolStripMenuItem.Name = "科室医生信息维护ToolStripMenuItem";
+            this.修改科室信息ToolStripMenuItem.Name = "修改科室信息ToolStripMenuItem";
             this.修改科室信息ToolStripMenuItem.Size = new System.Drawing.Size(116, 21);
             this.修改科室信息ToolStripMenuItem.Text = "科室医生信息维护";
             this.修改科室信息ToolStripMenuItem.Click += new System.EventHandler(this.科室医生信息维护ToolStripMenuItem_Click);
