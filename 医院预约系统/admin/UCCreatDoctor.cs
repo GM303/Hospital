@@ -12,7 +12,6 @@ namespace Hospital
     public partial class UCCreatDoctor : UCBase
     {
         string dname, did, dsex, is_Director;
-        int flag;
         UCDeptDocInfoMaintain UC;
         public UCCreatDoctor()
         {
@@ -22,10 +21,9 @@ namespace Hospital
         {
             InitializeComponent();
             this.UC = UC;
-            flag = UC.modifyFlag;
             comboBox1.Items.Add("医生");
             comboBox1.Items.Add("科室主任");
-            if (flag==0)
+            if (UC.modifyFlag == 0)
             {
                 textBox4.Text = UC.deptid;
                 comboBox1.Text = "医生";
@@ -54,7 +52,7 @@ namespace Hospital
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (flag == 0)
+            if (UC.modifyFlag == 0)//添加
             {
                 DataTable dt0 = new DataTable();
                 if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || comboBox1.Text == "")
@@ -83,7 +81,6 @@ namespace Hospital
                         int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "')");
                         string password = Encrypt.MD5Encrypt32("303303");
                         int res0 = NonQuery("insert into doctoraccount values('"+account+"','"+password+"','"+did+"')");
-                        int res1 = NonQuery("insert into scheduleInfo values('" + did + "','" + deptid + "','00000000000000','0-0-0-0-0-0-0-0-0-0-0-0-0-0')");
                         MessageBox.Show("保存成功");
                         UC.FreshTreeview();
                     }
@@ -93,7 +90,7 @@ namespace Hospital
                     }
                 }
             }
-            if(flag==1)
+            else//修改
             {
                 DataTable dt0 = new DataTable();
                 if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || comboBox1.Text == "")
@@ -117,7 +114,7 @@ namespace Hospital
                     }
                     int res0 = NonQuery("delete doctorinfo where did='" + did + "'");
                     int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "')");
-                    string password = Encrypt.MD5Encrypt32("66");
+                    string password = Encrypt.MD5Encrypt32("303303");
                     MessageBox.Show("保存成功");
                 }
 
