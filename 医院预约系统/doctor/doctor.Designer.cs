@@ -37,6 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.辅助预约ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dt)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +48,8 @@
             this.显示预约ToolStripMenuItem,
             this.查看排班ToolStripMenuItem,
             this.申请请假ToolStripMenuItem,
-            this.申请调班ToolStripMenuItem});
+            this.申请调班ToolStripMenuItem,
+            this.辅助预约ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 25);
@@ -118,6 +120,13 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "label3";
             // 
+            // 辅助预约ToolStripMenuItem
+            // 
+            this.辅助预约ToolStripMenuItem.Name = "辅助预约ToolStripMenuItem";
+            this.辅助预约ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.辅助预约ToolStripMenuItem.Text = "辅助预约";
+            this.辅助预约ToolStripMenuItem.Click += new System.EventHandler(this.辅助预约ToolStripMenuItem_Click);
+            // 
             // doctor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -150,5 +159,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem 辅助预约ToolStripMenuItem;
     }
 }

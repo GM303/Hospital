@@ -73,6 +73,12 @@
     <Compile Include="admin\ChangeShiftApprovalInfo.Designer.cs">
       <DependentUpon>ChangeShiftApprovalInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="doctor\HelpAppointmentInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doctor\HelpAppointmentInfo.Designer.cs">
+      <DependentUpon>HelpAppointmentInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="login\MD5Encrypt32.cs" />
     <Compile Include="patient\patient.cs">
       <SubType>Form</SubType>
@@ -208,6 +214,12 @@
     <Compile Include="admin\UCChangeShiftApproval.Designer.cs">
       <DependentUpon>UCChangeShiftApproval.cs</DependentUpon>
     </Compile>
+    <Compile Include="doctor\UCHelpAppointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="doctor\UCHelpAppointment.Designer.cs">
+      <DependentUpon>UCHelpAppointment.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="admin\admin.resx">
       <DependentUpon>admin.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="admin\UCSchedule.resx">
       <DependentUpon>UCSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\HelpAppointmentInfo.resx">
+      <DependentUpon>HelpAppointmentInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="doctor\UCVacationApproval.resx">
       <DependentUpon>UCVacationApproval.cs</DependentUpon>
@@ -286,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="admin\UCChangeShiftApproval.resx">
       <DependentUpon>UCChangeShiftApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCHelpAppointment.resx">
+      <DependentUpon>UCHelpAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
