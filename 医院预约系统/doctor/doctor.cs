@@ -75,5 +75,14 @@ namespace Hospital
             groupBox1.Controls.Add(ucss);
             groupBox1.Text = "查看排班";
         }
+
+        private void 辅助预约ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UCHelpAppointment uchp = new UCHelpAppointment(this);
+            uchp.Location = groupBox1.Location;
+            groupBox1.Controls.Clear();
+            groupBox1.Controls.Add(uchp);
+            groupBox1.Text = "辅助预约";
+        }
     }
 }
