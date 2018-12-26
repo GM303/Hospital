@@ -68,6 +68,12 @@
       <DependentUpon>admin.cs</DependentUpon>
     </Compile>
     <Compile Include="AutoUpdateNumberSource.cs" />
+    <Compile Include="admin\ChangeShiftApprovalInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\ChangeShiftApprovalInfo.Designer.cs">
+      <DependentUpon>ChangeShiftApprovalInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="login\MD5Encrypt32.cs" />
     <Compile Include="patient\patient.cs">
       <SubType>Form</SubType>
@@ -197,8 +203,17 @@
     <Compile Include="admin\UCDeptDocInfoMaintain.Designer.cs">
       <DependentUpon>UCDeptDocInfoMaintain.cs</DependentUpon>
     </Compile>
+    <Compile Include="admin\UCChangeShiftApproval.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="admin\UCChangeShiftApproval.Designer.cs">
+      <DependentUpon>UCChangeShiftApproval.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="admin\admin.resx">
       <DependentUpon>admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\ChangeShiftApprovalInfo.resx">
+      <DependentUpon>ChangeShiftApprovalInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin\UCDeptDocInfoMaintain.resx">
       <DependentUpon>UCDeptDocInfoMaintain.cs</DependentUpon>
@@ -269,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="admin\UCUpdateDepartment.resx">
       <DependentUpon>UCUpdateDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\UCChangeShiftApproval.resx">
+      <DependentUpon>UCChangeShiftApproval.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

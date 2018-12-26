@@ -51,5 +51,13 @@ namespace Hospital
             groupBox1.Text = "请假审批";
         }
 
+        private void 调班审核ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UCChangeShiftApproval UCcsa = new UCChangeShiftApproval();
+            UCcsa.Location = groupBox1.Location;
+            groupBox1.Controls.Clear();
+            groupBox1.Controls.Add(UCcsa);
+            groupBox1.Text = "调班审批";
+        }
     }
 }

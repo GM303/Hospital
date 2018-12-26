@@ -34,6 +34,7 @@
             this.修改科室信息ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.医生排班ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.请假审核ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.调班审批ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dt)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +54,8 @@
             this.添加科室ToolStripMenuItem,
             this.修改科室信息ToolStripMenuItem,
             this.医生排班ToolStripMenuItem,
-            this.请假审核ToolStripMenuItem});
+            this.请假审核ToolStripMenuItem,
+            this.调班审批ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 25);
@@ -86,6 +88,13 @@
             this.请假审核ToolStripMenuItem.Text = "请假审核";
             this.请假审核ToolStripMenuItem.Click += new System.EventHandler(this.请假审批ToolStripMenuItem_Click);
             // 
+            // 调班审批ToolStripMenuItem
+            // 
+            this.调班审批ToolStripMenuItem.Name = "调班审批ToolStripMenuItem";
+            this.调班审批ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.调班审批ToolStripMenuItem.Text = "调班审批";
+            this.调班审批ToolStripMenuItem.Click += new System.EventHandler(this.调班审核ToolStripMenuItem_Click);
+            // 
             // admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -111,5 +120,6 @@
         private System.Windows.Forms.ToolStripMenuItem 修改科室信息ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 医生排班ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 请假审核ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 调班审批ToolStripMenuItem;
     }
 }
