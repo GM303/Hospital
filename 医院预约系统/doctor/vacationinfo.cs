@@ -9,90 +9,33 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 namespace Hospital
 {
-    public partial class vacationinfo : Form
+    public partial class vacationinfo : FormBase
     {
-        string did, dname,lstatus,reason;
-        string leftstartTime,leftendTime;
-        private string strConn = @"Data Source=(local);Initial Catalog=Hospital;Integrated Security=True";
-        private SqlConnection con = new SqlConnection();
-        private SqlCommand cmd = new SqlCommand();
-        private SqlDataAdapter sda = new SqlDataAdapter();
-        private DataTable dt = new DataTable();
-        public vacationinfo()
+        string did,reason,year,month,day,year1,month1,day1,ampm,ampm1;
+        UCVacation UCVacation;
+        public vacationinfo(UCVacation UCVacation)
         {
             InitializeComponent();
-        }
-        public vacationinfo(string did,string dname,string leftStartTime, string leftEndTime,string reason)
-        {
-            InitializeComponent();
-            lstatus = "0";
-            this.did = did;
-            this.dname = dname;
-            this.leftstartTime = leftStartTime;
-            this.leftendTime = leftEndTime;
-            this.reason = reason;
-            label1.Text = "姓名：" + dname + System.Environment.NewLine + System.Environment.NewLine +
-                          "编号：" + did + System.Environment.NewLine + System.Environment.NewLine +
-                          "请假开始时间：" + leftstartTime+ System.Environment.NewLine + System.Environment.NewLine +
-                          "请假结束时间：" + leftendTime + System.Environment.NewLine + System.Environment.NewLine +
-                          "请假原因："+reason;
-        }
+            this.UCVacation = UCVacation;
+            this.did = UCVacation.id;
+            this.year = UCVacation.year;
+            this.month = UCVacation.month;
+            this.day = UCVacation.day;
+            this.ampm = UCVacation.ampm;
+            this.year1 = UCVacation.year1;
+            this.month1 = UCVacation.month1;
+            this.day1 = UCVacation.day1;
+            this.ampm1 = UCVacation.ampm1;
+            this.reason = UCVacation.reason;
+            label1.Text =  "请假开始时间：" + year+"-"+month+"-"+day+"-"+ampm + System.Environment.NewLine + System.Environment.NewLine +
+                          "请假结束时间：" + year1+"-"+month1+"-"+day1+"-"+ampm1 + System.Environment.NewLine + System.Environment.NewLine +
+                          "请假原因：" + reason;
 
-
-        DataTable Fill(string s)
-        {
-            DataTable res = new DataTable();
-            try
-            {
-                con.ConnectionString = strConn;
-                cmd.CommandText = s;
-                cmd.Connection = con;
-                sda.SelectCommand = cmd;
-                con.Open();
-                sda.Fill(res);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            finally
-            {
-                sda.Dispose();
-                cmd.Dispose();
-                con.Close();
-            }
-
-            return res;
-        }
-        int NonQuery(string s)
-        {
-            int res = -1;
-            con.ConnectionString = strConn;
-            cmd.CommandText = s;
-            cmd.Connection = con;
-            try
-            {
-                con.Open();
-                res = cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                //MessageBox.Show(e.Message);
-                throw e;
-            }
-            finally
-            {
-                cmd.Dispose();
-                con.Close();
-
-            }
-            /* con.Open();
-             res = cmd.ExecuteNonQuery();*/
-            return res;
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            int res1 = NonQuery("insert into vacationinfo(did,lstarttime,lendtime,lstatus,reason) values('" + did + "','" + leftstartTime + "','" + leftendTime + "','" + lstatus + "','"+reason+"')");
+        //    string s = "insert into vacationinfo(did,year,month,day,ampm,year1,month1,day1,ampm1,reason) values('" + id + "','" + year + "','" + month + "','" + day + "','" + ampm + "','" + year1 + "','" + month1 + "','" + day1 + "','" + ampm1 + "','" + reason + "')";
+            int res1=NonQuery("insert into vacationinfo(did,year,month,day,ampm,year1,month1,day1,ampm1,reason) values('" + did + "','" + year + "','" + month + "','" + day + "','" + ampm + "','" + year1 + "','" + month1 + "','" + day1 + "','" + ampm1 +"','"+reason+ "')");
             MessageBox.Show("申请提交成功！");
             this.Close();
         }
