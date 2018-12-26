@@ -39,7 +39,7 @@ namespace Hospital
             else
             {
                 MessageBox.Show("请输入正确的请假时间！");
-               dateTimePicker1.Value = now;
+                dateTimePicker1.Value = now;
                 dateTimePicker2.Value = dateTimePicker1.Value;
 
             }
