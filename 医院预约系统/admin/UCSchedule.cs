@@ -13,7 +13,6 @@ namespace Hospital
     {
         CheckBox[] CB = new CheckBox[60];
         Label[] LB = new Label[7];
-        string sid;
         string[] week = { "monday", "tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         string[] weekChinese = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
         DateTime time = DateTime.Now.AddDays(1);

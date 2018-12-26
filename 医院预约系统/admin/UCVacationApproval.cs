@@ -12,7 +12,6 @@ namespace Hospital
     public partial class UCVacationApproval : UCBase
     {
         int row;
-        string lstarttime, lendtime;
         public UCVacationApproval()
         {
             InitializeComponent();
@@ -49,40 +48,41 @@ namespace Hospital
             dataGridView1.Columns[4].Width = 235;
             dataGridView1.Columns[5].Width = 133;
             dt = Fill(@"select * from vacationInfo");
-            for(int i=0; i<dt.Rows.Count;i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if ((dt.Rows[i]["lstatus"].ToString()).CompareTo("0")==0)
+
+                if (Convert.ToInt32(dt.Rows[i]["status"]) == 0)
                 {
                     status = "待通过";
                 }
-                else if((dt.Rows[i]["lstatus"].ToString()).CompareTo("1") == 0)
+                else if (Convert.ToInt32(dt.Rows[i]["status"]) == 1)
                 {
                     status = "通过";
                 }
-                else if((dt.Rows[i]["lstatus"].ToString()).CompareTo("2") == 0)
+                else if (Convert.ToInt32(dt.Rows[i]["status"]) == 2)
                 {
                     status = "不通过";
                 }
-               // MessageBox.Show(dt.Rows[i]["did"].ToString()+"  "+i.ToString());
-                dataGridView1.Rows.Add( dt.Rows[i]["did"], GetDname(dt.Rows[i]["did"].ToString()), dt.Rows[i]["lstarttime"], dt.Rows[i]["lendtime"], dt.Rows[i]["reason"],status.ToString());
+                string starttime = dt.Rows[i]["year"].ToString() + "-" + dt.Rows[i]["month"].ToString() + "-" + dt.Rows[i]["day"].ToString() + dt.Rows[i]["ampm"].ToString();
+                string endtime = dt.Rows[i]["year1"].ToString() + "-" + dt.Rows[i]["month1"].ToString() + "-" + dt.Rows[i]["day1"].ToString() + dt.Rows[i]["ampm1"].ToString();
+                dataGridView1.Rows.Add( dt.Rows[i]["did"], GetDname(dt.Rows[i]["did"].ToString()),starttime, endtime, dt.Rows[i]["reason"],status.ToString());
             }
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string isApprova;
             if (dataGridView1.Columns[e.ColumnIndex].Name == "button")
             {
                 row = e.RowIndex;
                 id = dataGridView1.Rows[row].Cells[0].Value.ToString();
-                name = dataGridView1.Rows[row].Cells[1].Value.ToString();
-                lstarttime = dataGridView1.Rows[row].Cells[2].Value.ToString();
-                lendtime = dataGridView1.Rows[row].Cells[3].Value.ToString();
-                dt = Fill("select * from vacationInfo where  did='" + id + "'and lstarttime='" + lstarttime + "'and lendtime='" + lendtime + "'");
-                isApprova = dt.Rows[0]["lstatus"].ToString();
-                VacationApprovalInfo V = new VacationApprovalInfo(id,name,lstarttime,lendtime,isApprova);
+                int status = Convert.ToInt32(dt.Rows[row]["status"]);
+                year = dt.Rows[row]["year"].ToString();
+                month = dt.Rows[row]["month"].ToString();
+                day = dt.Rows[row]["day"].ToString();
+                ampm = dt.Rows[row]["ampm"].ToString();
+                VacationApprovalInfo V = new VacationApprovalInfo();
+                V.status = status;
                 V.ShowDialog();
-                int res = NonQuery("update vacationInfo set lstatus='" + V.status + "' where  did='" + id + "'and lstarttime='" + lstarttime + "'and lendtime='" + lendtime + "'");
+                int res = NonQuery("update vacationInfo set status=" + V.status + " where  did='" + id + "'and year='" + year + "'and month='" + month + "' and day='" + day + "' and ampm='" + ampm + "'");
                 FreshDataGridView();
             }
         }

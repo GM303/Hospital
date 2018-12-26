@@ -172,16 +172,16 @@
     <Compile Include="patient\ReleaseFreezeApplication.Designer.cs">
       <DependentUpon>ReleaseFreezeApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="doctor\UCVacationApproval.cs">
+    <Compile Include="admin\UCVacationApproval.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="doctor\UCVacationApproval.Designer.cs">
+    <Compile Include="admin\UCVacationApproval.Designer.cs">
       <DependentUpon>UCVacationApproval.cs</DependentUpon>
     </Compile>
-    <Compile Include="doctor\VacationApprovalInfo.cs">
+    <Compile Include="admin\VacationApprovalInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="doctor\VacationApprovalInfo.Designer.cs">
+    <Compile Include="admin\VacationApprovalInfo.Designer.cs">
       <DependentUpon>VacationApprovalInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="admin\UCCreatDoctor.cs">
@@ -220,10 +220,10 @@
     <EmbeddedResource Include="admin\UCSchedule.resx">
       <DependentUpon>UCSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="doctor\UCVacationApproval.resx">
+    <EmbeddedResource Include="admin\UCVacationApproval.resx">
       <DependentUpon>UCVacationApproval.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="doctor\VacationApprovalInfo.resx">
+    <EmbeddedResource Include="admin\VacationApprovalInfo.resx">
       <DependentUpon>VacationApprovalInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="patient\patient.resx">

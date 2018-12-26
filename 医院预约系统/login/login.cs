@@ -15,8 +15,8 @@ namespace Hospital
         public login()
         {
             InitializeComponent();
-            //utoUpdateNumberSource.run();
-         //   AutoInsertNumberSources();
+            admin adm = new admin(this);
+            adm.ShowDialog();
         }
         private int AccountCheck(string account, string password, string tableName)//返回0表示正确，返回1表示账号不存在，返回2表示密码错误
         {
@@ -122,10 +122,8 @@ namespace Hospital
                 switch (AccountCheck(account, password, "adminAccount"))
                 {
                     case 0:
-                        //MessageBox.Show("验证成功");
                         admin adm = new admin(this);
                         adm.ShowDialog();
-                       
                         break;
                     case 1:
                         MessageBox.Show("账号不存在");
