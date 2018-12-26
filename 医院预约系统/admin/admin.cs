@@ -36,7 +36,7 @@ namespace Hospital
         }
         private void 医生排班ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UCschedule UCs = new UCschedule();
+            UCschedule UCs = new UCschedule(true);
             UCs.Location = groupBox1.Location;
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(UCs);

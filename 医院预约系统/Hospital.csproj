@@ -143,12 +143,6 @@
     <Compile Include="doctor\UCShowAppointment.Designer.cs">
       <DependentUpon>UCShowAppointment.cs</DependentUpon>
     </Compile>
-    <Compile Include="doctor\UCShowSchedule.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="doctor\UCShowSchedule.Designer.cs">
-      <DependentUpon>UCShowSchedule.cs</DependentUpon>
-    </Compile>
     <Compile Include="doctor\UCVacation.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="doctor\UCShowAppointment.resx">
       <DependentUpon>UCShowAppointment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="doctor\UCShowSchedule.resx">
-      <DependentUpon>UCShowSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="doctor\UCVacation.resx">
       <DependentUpon>UCVacation.cs</DependentUpon>

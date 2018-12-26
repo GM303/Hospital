@@ -70,17 +70,16 @@ namespace Hospital
         }
         private void 查看排班ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UCShowSchedule ucss = new UCShowSchedule(this);
+            UCschedule ucss = new UCschedule(false);
             ucss.Location = groupBox1.Location;
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(ucss);
             groupBox1.Text = "查看排班";
 
         }
-
         private void 医生排班ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UCschedule ucs = new UCschedule();
+            UCschedule ucs = new UCschedule(false);
             ucs.Location = groupBox1.Location;
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(ucs);
