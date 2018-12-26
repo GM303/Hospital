@@ -67,7 +67,6 @@
     <Compile Include="admin\admin.Designer.cs">
       <DependentUpon>admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutoUpdateNumberSource.cs" />
     <Compile Include="admin\ChangeShiftApprovalInfo.cs">
       <SubType>Form</SubType>
     </Compile>
