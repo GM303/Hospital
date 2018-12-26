@@ -84,7 +84,6 @@ namespace Hospital
                 V.ShowDialog();
                 int res = NonQuery("update vacationInfo set lstatus='" + V.status + "' where  did='" + id + "'and lstarttime='" + lstarttime + "'and lendtime='" + lendtime + "'");
                 FreshDataGridView();
-                AutoUpdateNumberSource.run();
             }
         }
     }

@@ -26,7 +26,6 @@ namespace Hospital
             groupBox1.Text = "显示预约";
 
         }
-      
         public void GetIdNameDept(string account)
         {
             DataTable dt = new DataTable();
@@ -53,7 +52,7 @@ namespace Hospital
         }
         private void 申请调班ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UCChangeShifts uccs = new UCChangeShifts();
+            UCChangeShifts uccs = new UCChangeShifts(this);
             uccs.Location = groupBox1.Location;
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(uccs);
@@ -75,26 +74,6 @@ namespace Hospital
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(ucss);
             groupBox1.Text = "查看排班";
-
         }
-        private void 医生排班ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UCschedule ucs = new UCschedule(false);
-            ucs.Location = groupBox1.Location;
-            groupBox1.Controls.Clear();
-            groupBox1.Controls.Add(ucs);
-            groupBox1.Text = "医生排班";
-        }
-
-        private void 请假审核ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UCVacationApproval UCva = new UCVacationApproval();
-            UCva.Location = groupBox1.Location;
-            groupBox1.Controls.Clear();
-            groupBox1.Controls.Add(UCva);
-            groupBox1.Text = "请假审批";
-        }
-
-
     }
 }

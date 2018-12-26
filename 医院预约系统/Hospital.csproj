@@ -67,7 +67,6 @@
     <Compile Include="admin\admin.Designer.cs">
       <DependentUpon>admin.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutoUpdateNumberSource.cs" />
     <Compile Include="login\MD5Encrypt32.cs" />
     <Compile Include="patient\patient.cs">
       <SubType>Form</SubType>

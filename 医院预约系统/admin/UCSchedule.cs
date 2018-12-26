@@ -55,7 +55,6 @@ namespace Hospital
         }
         public int GetCButtonStratLocation(string Week)
         {
-            //MessageBox.Show(Week);
             int j = 0;
             for(int i=0;i<7;i++)
             {
@@ -146,15 +145,6 @@ namespace Hospital
                 }
             }
         }
-        public string CreatSid(string did,string deptid,string year,string month,string day,string ampm)
-        {
-            return did + deptid + year + month + day + ampm+"0";//排班状态默认为0，即医生在岗允许发号
-        }
-        public string GetDeptid(string did)
-        {
-            dt = Fill("select * from doctorInfo where did='" + id+"'");
-            return dt.Rows[0]["deptid"].ToString();
-        }
         public void UpadteStatus()//更新排班
         {
             string[] date = new string[4];
@@ -172,11 +162,10 @@ namespace Hospital
                 }
                 if (CB[i].Checked == true)//添加排班信息
                 {
-                    sid = CreatSid(id, deptid, date[0], date[1], date[2],ampm);
-                    dt = Fill("select * from scheduleInfo where sid='"+sid+"'");
+                    dt = Fill("select * from scheduleInfo where did='" + id + "' and year='" + date[0] + "' and month='" + date[1] + "' and day='" + date[2] + "' and ampm='" + ampm + "'");
                     if(dt.Rows.Count==0)
                     {
-                        int res = NonQuery("insert into scheduleInfo values('"+sid+ "','" + id + "','" + deptid + "','" + date[0] + "','" + date[1] + "','" + date[2] + "','" + ampm + "','0')");
+                        int res = NonQuery("insert into scheduleInfo(did,year,month,day,ampm) values('" + id + "','" + date[0] + "','" + date[1] + "','" + date[2] + "','" + ampm + "')");
                     }
                 }
                 else//删除排班信息
@@ -191,23 +180,16 @@ namespace Hospital
             id = e.Node.Name;
             if (e.Node.Level == 1)
             {
-                deptid = GetDeptid(id);
-                //MessageBox.Show(deptid);
                 FreshCButton();
                 CreatLabel();
-                //FreshCbButton();
-                //CreatLable();
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
 
             UpadteStatus();
-           // UpdateNumsource();
             MessageBox.Show("提交成功");
             FreshCButton();
-           // FreshCbButton();
-           // AutoUpdateNumberSource.run(doc.id);
         }
     }
 }
