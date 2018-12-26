@@ -96,6 +96,7 @@ namespace Hospital
         {
             DataTable dt = new DataTable();
             dt = Fill(@"select status from numSourceInfo where numSourceInfo.year='" + year + "' and numSourceInfo.month='" + month + "' and numSourceInfo.day='" + day + "' and numSourceInfo.ampm='" + ampm + "' and numSourceInfo.did='" + did + "'");
+
             if (dt.Rows.Count == 0)
             {
                 return "";

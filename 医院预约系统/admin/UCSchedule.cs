@@ -16,15 +16,17 @@ namespace Hospital
         string sid;
         string[] week = { "monday", "tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         string[] weekChinese = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
-        static DateTime time = DateTime.Now.AddDays(1);
-        string DayOfWeek = time.DayOfWeek.ToString();
+        DateTime time = DateTime.Now.AddDays(1);
+        string DayOfWeek;
         public Boolean modifyPermission = true;//修改排班的权限
         public UCschedule(Boolean modifyPermission)
         {
             InitializeComponent();
+            DayOfWeek = time.DayOfWeek.ToString();
             FreshTreeview();
             CreatCButton();
             button1.Visible = modifyPermission;
+            
             this.modifyPermission = modifyPermission;
             //CreatCbButton();
         }
@@ -39,7 +41,7 @@ namespace Hospital
             }
             foreach (TreeNode tn in treeView1.Nodes)
             {
-                dt = Fill("select * from doctorInfo,departmentInfo where doctorInfo.deptid=departmentInfo.deptid and departmentInfo.deptname='" + tn.Text + "'");
+                dt = Fill("select * from doctorInfoview,departmentInfo where doctorInfoview.deptid=departmentInfo.deptid and departmentInfo.deptname='" + tn.Text + "'");
                 if (dt == null)
                 {
                     MessageBox.Show("null");
@@ -129,11 +131,11 @@ namespace Hospital
                    
                     if (date[3].Equals("上午"))
                     {
-                        ampm = "0";
+                        ampm = "am";
                     }
                     else
                     {
-                        ampm = "1";
+                        ampm = "pm";
                     }
                     if (dt.Rows[i]["year"].ToString().Equals(date[0]) && dt.Rows[i]["month"].ToString().Equals(date[1]) && dt.Rows[i]["day"].ToString().Equals(date[2]) && dt.Rows[i]["ampm"].ToString().Equals(ampm))
                     {
@@ -162,11 +164,11 @@ namespace Hospital
                 date = Regex.Split(CB[i].Text, "-");
                 if (date[3].Equals("上午"))
                 {
-                    ampm = "0";
+                    ampm = "am";
                 }
                 else
                 {
-                    ampm = "1";
+                    ampm = "pm";
                 }
                 if (CB[i].Checked == true)//添加排班信息
                 {
