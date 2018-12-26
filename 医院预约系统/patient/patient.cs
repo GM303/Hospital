@@ -24,7 +24,7 @@ namespace Hospital
             GetIdName(account);
             InitializeComponent();
             groupBox1.Controls.Clear();
-            UCappointmentSP uca = new UCappointmentSP(this);
+            UCappointment uca = new UCappointment(this);
             uca.Location = groupBox1.Location;
             groupBox1.Controls.Add(uca);
             groupBox1.Text = "预约";

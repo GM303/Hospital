@@ -12,6 +12,7 @@ namespace Hospital
     public partial class UCCreatDoctor : UCBase
     {
         string dname, did, dsex, is_Director;
+        int status;
         UCDeptDocInfoMaintain UC;
         public UCCreatDoctor()
         {
@@ -23,10 +24,14 @@ namespace Hospital
             this.UC = UC;
             comboBox1.Items.Add("医生");
             comboBox1.Items.Add("科室主任");
+
+            comboBox2.Items.Add("在岗");
+            comboBox2.Items.Add("离岗");
             if (UC.modifyFlag == 0)
             {
                 textBox4.Text = UC.deptid;
                 comboBox1.Text = "医生";
+                comboBox2.Text = "在岗";
             }
             else
             {
@@ -46,6 +51,14 @@ namespace Hospital
                 else
                 {
                     comboBox1.Text = "科室主任";
+                }
+                if (Convert.ToInt32(dt.Rows[0]["status"]) == 1)
+                {
+                    comboBox2.Text = "在岗";
+                }
+                else
+                {
+                    comboBox2.Text = "离岗";
                 }
 
             }
@@ -74,11 +87,19 @@ namespace Hospital
                     {
                         is_Director = 1.ToString();
                     }
+                    if (comboBox2.Text.Equals("在岗") == true)
+                    {
+                        status = 1;
+                    }
+                    else
+                    {
+                        status = 0;
+                    }
                     dt = Fill("select * from doctorinfo where did='" + did + "'");
                     dt0 = Fill("select * from doctorinfo where account='" + account + "'");
                     if (dt.Rows.Count == 0 || dt0.Rows.Count == 0)
                     {
-                        int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "')");
+                        int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "',"+status+")");
                         string password = Encrypt.MD5Encrypt32("303303");
                         int res0 = NonQuery("insert into doctoraccount values('"+account+"','"+password+"','"+did+"')");
                         MessageBox.Show("保存成功");
@@ -112,9 +133,18 @@ namespace Hospital
                     {
                         is_Director = 1.ToString();
                     }
+                    if (comboBox2.Text.Equals("在岗") == true)
+                    {
+                        status = 1;
+                    }
+                    else
+                    {
+                        status = 0;
+                    }
                     int res0 = NonQuery("delete doctorinfo where did='" + did + "'");
-                    int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "')");
+                    int res = NonQuery("insert into doctorinfo values('" + did + "','" + dname + "','" + dsex + "','" + deptid + "','" + account + "','" + is_Director + "'," + status + ")");
                     string password = Encrypt.MD5Encrypt32("303303");
+                    int res1 = NonQuery("insert into doctoraccount values('" + account + "','" + password + "','" + did + "')");
                     MessageBox.Show("保存成功");
                 }
 

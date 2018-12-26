@@ -173,12 +173,6 @@
     <Compile Include="doctor\UCVacationApproval.Designer.cs">
       <DependentUpon>UCVacationApproval.cs</DependentUpon>
     </Compile>
-    <Compile Include="patient\UCappointmentSP.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="patient\UCappointmentSP.Designer.cs">
-      <DependentUpon>UCappointmentSP.cs</DependentUpon>
-    </Compile>
     <Compile Include="doctor\VacationApprovalInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,9 +235,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="patient\UCappointment.resx">
       <DependentUpon>UCappointment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="patient\UCappointmentSP.resx">
-      <DependentUpon>UCappointmentSP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="patient\UCCancelAppointment.resx">
       <DependentUpon>UCCancelAppointment.cs</DependentUpon>

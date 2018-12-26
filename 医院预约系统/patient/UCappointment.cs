@@ -46,7 +46,7 @@ namespace Hospital
             }
             foreach (TreeNode tn in treeView1.Nodes)
             {
-                dt = Fill("select * from doctorInfo,departmentInfo where doctorInfo.deptid=departmentInfo.deptid and departmentInfo.deptname='" + tn.Text + "'");
+                dt = Fill("select * from doctorInfoview,departmentInfo where doctorInfoview.deptid=departmentInfo.deptid and departmentInfo.deptname='" + tn.Text + "'");
                 if (dt == null)
                 {
                     MessageBox.Show("null");
