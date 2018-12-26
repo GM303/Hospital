@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Hospital
 {
@@ -13,6 +14,8 @@ namespace Hospital
     {
         doctor doc;
         int row, column;
+        string pid,rid;
+        string status;
         public UCShowAppointment()
         {
             InitializeComponent();
@@ -22,6 +25,9 @@ namespace Hospital
             InitializeComponent();
             this.doc = doc;
             FreshDataGridView();
+            comboBox1.Enabled = false;
+            textBox1.Enabled = false;
+            button1.Enabled = false;
         }
         public string GetPname(string pid)
         {
@@ -43,6 +49,7 @@ namespace Hospital
         {
             DataTable dt = new DataTable();
             dataGridView1.Columns.Clear();
+            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ReadOnly = true;
             dataGridView1.Columns.Add("0", "患者ID");
             dataGridView1.Columns.Add("1", "患者姓名");
@@ -77,11 +84,78 @@ namespace Hospital
             }
         }
 
-        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(comboBox1.Text.Equals("已就诊"))
+            {
+                textBox1.Enabled = true;
+            }
+            else
+            {
+                textBox1.Enabled = false;
+            }
+        }
+
+
+
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            textBox1.Text = "";
             row = e.RowIndex;
             column = e.ColumnIndex;
+            string status;
+            pid = dataGridView1.Rows[row].Cells[0].Value.ToString();
+            string TotalTime = dataGridView1.Rows[row].Cells[4].Value.ToString();
+            rid = dataGridView1.Rows[row].Cells[5].Value.ToString();
+            string[] time = Regex.Split(TotalTime, "-");
+            year = time[0];
+            month = time[1];
+            day = time[2];
+            ampm = time[3];
+ 
+            comboBox1.Enabled = true;
+            button1.Enabled = true;
+            status = dataGridView1.Rows[row].Cells[6].Value.ToString();
+            //MessageBox.Show(pid+" "+day);
+                
+            comboBox1.Text = status;
+            if (status.Equals("已就诊"))
+            {
+                dt = Fill("select * from reservationInfo where reservationInfo.did='" + doc.id + "'and reservationInfo.pid='" + pid + "'and reservationInfo.rid='" + rid + "'and reservationInfo.year='" + year + "'and reservationInfo.month='" + month + "'and reservationInfo.day='" + day + "'and reservationInfo.ampm='" + ampm + "'");
+                if (dt.Rows.Count == 0)
+                {
+                    textBox1.Text = "无";
+                }
+                else
+                {
+                    textBox1.Text = dt.Rows[0]["dAdvice"].ToString();
+                }
+                textBox1.Enabled = true;
+            }
+        }
 
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string status1 = comboBox1.Text;
+            string dAdvice = textBox1.Text;
+            if(status1.Equals("已就诊"))
+            {
+                status1 = "1";
+            }
+            if (status1.Equals("未就诊"))
+            {
+                status1 = "2";
+            }
+            if (status1.Equals("未就诊"))
+            {
+                status1 = "0";
+            }
+            int res=NonQuery("update reservationInfo set status='"+status1+"',dAdvice='"+dAdvice+"' where reservationInfo.did='" + doc.id + "'and reservationInfo.pid='" + pid + "'and reservationInfo.rid='" + rid + "'and reservationInfo.year='" + year + "'and reservationInfo.month='" + month + "'and reservationInfo.day='" + day + "'and reservationInfo.ampm='" + ampm + "'");
+            MessageBox.Show("保存成功");
+            FreshDataGridView();
         }
     }
 }
