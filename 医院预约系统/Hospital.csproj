@@ -73,6 +73,12 @@
     <Compile Include="admin\ChangeShiftApprovalInfo.Designer.cs">
       <DependentUpon>ChangeShiftApprovalInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="doctor\HelpAppointmentInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="doctor\HelpAppointmentInfo.Designer.cs">
+      <DependentUpon>HelpAppointmentInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="login\MD5Encrypt32.cs" />
     <Compile Include="patient\patient.cs">
       <SubType>Form</SubType>
@@ -172,16 +178,16 @@
     <Compile Include="patient\ReleaseFreezeApplication.Designer.cs">
       <DependentUpon>ReleaseFreezeApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin\UCVacationApproval.cs">
+    <Compile Include="doctor\UCVacationApproval.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="admin\UCVacationApproval.Designer.cs">
+    <Compile Include="doctor\UCVacationApproval.Designer.cs">
       <DependentUpon>UCVacationApproval.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin\VacationApprovalInfo.cs">
+    <Compile Include="doctor\VacationApprovalInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="admin\VacationApprovalInfo.Designer.cs">
+    <Compile Include="doctor\VacationApprovalInfo.Designer.cs">
       <DependentUpon>VacationApprovalInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="admin\UCCreatDoctor.cs">
@@ -208,6 +214,12 @@
     <Compile Include="admin\UCChangeShiftApproval.Designer.cs">
       <DependentUpon>UCChangeShiftApproval.cs</DependentUpon>
     </Compile>
+    <Compile Include="doctor\UCHelpAppointment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="doctor\UCHelpAppointment.Designer.cs">
+      <DependentUpon>UCHelpAppointment.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="admin\admin.resx">
       <DependentUpon>admin.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,10 +232,13 @@
     <EmbeddedResource Include="admin\UCSchedule.resx">
       <DependentUpon>UCSchedule.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\UCVacationApproval.resx">
+    <EmbeddedResource Include="doctor\HelpAppointmentInfo.resx">
+      <DependentUpon>HelpAppointmentInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCVacationApproval.resx">
       <DependentUpon>UCVacationApproval.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\VacationApprovalInfo.resx">
+    <EmbeddedResource Include="doctor\VacationApprovalInfo.resx">
       <DependentUpon>VacationApprovalInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="patient\patient.resx">
@@ -286,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="admin\UCChangeShiftApproval.resx">
       <DependentUpon>UCChangeShiftApproval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="doctor\UCHelpAppointment.resx">
+      <DependentUpon>UCHelpAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
