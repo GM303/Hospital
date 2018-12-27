@@ -70,6 +70,7 @@ namespace Hospital
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            string year1, month1, day1,ampm1;
             if (dataGridView1.Columns[e.ColumnIndex].Name == "button")
             {
                 row = e.RowIndex;
@@ -79,10 +80,27 @@ namespace Hospital
                 month = dt.Rows[row]["month"].ToString();
                 day = dt.Rows[row]["day"].ToString();
                 ampm = dt.Rows[row]["ampm"].ToString();
+                year1 = dt.Rows[row]["year1"].ToString();
+                month1 = dt.Rows[row]["month1"].ToString();
+                day1 = dt.Rows[row]["day1"].ToString();
+                ampm1 = dt.Rows[row]["ampm1"].ToString();
                 VacationApprovalInfo V = new VacationApprovalInfo();
                 V.status = status;
                 V.ShowDialog();
                 int res = NonQuery("update vacationInfo set status=" + V.status + " where  did='" + id + "'and year='" + year + "'and month='" + month + "' and day='" + day + "' and ampm='" + ampm + "'");
+                DateTime starttime = new DateTime(Convert.ToInt32(year), Convert.ToInt32(month), Convert.ToInt32(day));
+                DateTime endtime = new DateTime(Convert.ToInt32(year1), Convert.ToInt32(month1), Convert.ToInt32(day1));
+                for(DateTime time=starttime;time<=endtime ;time=time.AddDays(1) )
+                {
+                    if(ampm.Equals("pm")&&(starttime==time))
+                    {
+                        int res1 = NonQuery("update  scheduleInfo  set status='"+status.ToString()+"' where did='"+id+ "' and year='" + time.Year + "'and month='"+ time.Month +"' and day='"+ time.Day +"' and ampm= 'pm' " );
+                        MessageBox.Show(time.ToString()+" "+ status.ToString());
+                        continue;
+                    }
+                    int res2 = NonQuery("update  scheduleInfo  set status='" + status.ToString() + "' where did='" + id + "' and year='" + time.Year + "'and month='" + time.Month + "' and day='" + time.Day + "'");
+                    MessageBox.Show(time.ToString() + " " + status.ToString());
+                }
                 FreshDataGridView();
             }
         }
