@@ -39,7 +39,7 @@ namespace Hospital
                 VacationApprovalInfo V = new VacationApprovalInfo();
                 V.status = status;
                 V.ShowDialog();
-                int res = NonQuery("update vacationInfo set status=" + V.status + " where  did='" + id + "'and year='" + year + "'and month='" + month + "' and day='" + day + "' and ampm='" + ampm + "'");
+                int res = NonQuery("update changeshiftinfo set status=" + V.status + " where  did='" + id + "'and year='" + year + "'and month='" + month + "' and day='" + day + "' and ampm='" + ampm + "'");
                 FreshDataGridView();
             }
         }
